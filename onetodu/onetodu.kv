@@ -1,7 +1,7 @@
 #:kivy 1.10.0
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 
-<ToDoListItem>:
+<ToDoListItemWidget>:
     canvas.before:
         Color:
             rgba: get_color_from_hex("#FE7474FF")
@@ -26,7 +26,7 @@
         background_normal: "images/remove-todo_btn_shadow.png"
         background_down: "images/remove-todo_btn_pressed_shadow.png"
         background_color: get_color_from_hex("#009688")
-        on_release: app.screen_manager.get_screen("main").remove_todo(root)
+        on_release: app.todo_list_manager.remove_todo_by_text(label.text)
 
 
 <MainScreen>:
@@ -106,14 +106,14 @@
                                 background_normal: "images/text-input.png"
                                 background_active: "images/text-input_active.png"
                                 font_name: "NotoSansCJKjp-DemiLight"
-                                on_text_validate: root.add_todo(new_todo_text_input.text)
+                                on_text_validate: app.todo_list_manager.add_todo(new_todo_text_input.text)
                     Button:
                         size: dp(306), dp(36)
                         size_hint: None, None
                         pos_hint: {"center_x": 0.5}
                         background_normal: "images/add-todo_btn.png"
                         background_down: "images/add-todo_btn_pressed.png"
-                        on_release: root.add_todo(new_todo_text_input.text)
+                        on_release: app.todo_list_manager.add_todo(new_todo_text_input.text)
             RelativeLayout:
                 canvas.before:
                     Color:
