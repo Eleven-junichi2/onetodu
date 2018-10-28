@@ -1,4 +1,4 @@
 # onetodu
 A very simple ToDo appilcation.
 
-![image]("https://raw.githubusercontent.com/Eleven-junichi2/onetodu/master/Onetodo_SS.png")
+![Onetodu](https://raw.githubusercontent.com/Eleven-junichi2/onetodu/master/Onetodo_SS.png)
