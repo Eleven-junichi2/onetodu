@@ -28,6 +28,9 @@ class MainScreen(Screen):
         if todo_text:
             self.todo_list.add_widget(ToDoListItem(label_text=todo_text))
 
+    def remove_todo(self, todo_list_item_widget):
+        self.todo_list.remove_widget(todo_list_item_widget)
+
 
 class OnetoduScreenManager(ScreenManager):
     def __init__(self, **kwargs):
@@ -39,7 +42,8 @@ class OnetoduApp(App):
     def build(self):
         self.title = "Onetodu"
         self.icon = "images/onetodu.png"
-        return OnetoduScreenManager()
+        self.screen_manager = OnetoduScreenManager()
+        return self.screen_manager
 
 
 def main():
