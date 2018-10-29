@@ -140,4 +140,7 @@ pip-selfcheck.json
 !.vscode/extensions.json
 
 
+### Onetodu ###
+onetodu/data
+
 # End of https://www.gitignore.io/api/python,visualstudiocode

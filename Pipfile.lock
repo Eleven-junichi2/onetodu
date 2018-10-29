@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7509e50cb7dd5047998d1e9026bc1977ce36393cc9ae8a775a877330e7abcc26"
+            "sha256": "0c8c8d2b652f6de99fc78b0fc5ebcab63be2155ee7f4e304709253f7d5033f4d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -60,6 +60,13 @@
                 "sha256:c4ad43fb04c899be27baa5a6e382c79620fc3602213221cb97da2280f345b2d6",
                 "sha256:cb6f052d69748a7db70970e5a8ee3d96506751fcfcc8bf979424fcd788473037",
                 "sha256:d1113ee88eaff5127ecc05121570f1f2adec21d7f1699ef1c6c2bf4396e51578"
+            ],
+            "index": "pypi",
+            "version": "==1.10.1"
+        },
+        "kivy-examples": {
+            "hashes": [
+                "sha256:5df09d9c3e902c3d1ac29c7f461eae0bd31371137b0dc19319d90cb9a29c0329"
             ],
             "index": "pypi",
             "version": "==1.10.1"
