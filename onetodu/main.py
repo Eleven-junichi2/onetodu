@@ -28,11 +28,11 @@ class TodoListManager:
 
     def add_todo(self, todo_text: str):
         self.todo_list.append(todo_text)
-        self.manager_user.update_todo_list(self.todo_list)
+        self.manager_user.update_todo_list(self.todo_list, mode="add")
 
     def remove_todo_by_text(self, todo_text: str):
         self.todo_list.remove(todo_text)
-        self.manager_user.update_todo_list(self.todo_list)
+        self.manager_user.update_todo_list(self.todo_list, mode="remove")
 
     def save_to_json(self, file_path):
         with open(file_path, "w") as file_obj:
@@ -44,6 +44,17 @@ class TodoListManager:
         self.manager_user.update_todo_list(self.todo_list)
 
 
+class ToDoListManagerUser:
+    def update_todo_list(self, todo_list, mode="update"):
+        return NotImplementedError
+
+    def add_todo_list(self, todo_list):
+        return NotImplementedError
+
+    def remove_todo_list(self, todo_list):
+        return NotImplementedError
+
+
 class ToDoListItemWidget(BoxLayout):
     label = ObjectProperty(None)
 
@@ -52,14 +63,21 @@ class ToDoListItemWidget(BoxLayout):
         self.label.text = label_text
 
 
-class MainScreen(Screen):
+class MainScreen(Screen, ToDoListManagerUser):
     todo_list = ObjectProperty(None)
     new_todo_text_input = ObjectProperty(None)
 
-    def update_todo_list(self, todo_list):
-        self.todo_list.clear_widgets()
-        for todo_text in todo_list:
-            self.todo_list.add_widget(ToDoListItemWidget(label_text=todo_text))
+    def update_todo_list(self, todo_list, mode="update"):
+        if mode == "update" or "remove":
+            self.todo_list.clear_widgets()
+            [self.todo_list.add_widget(ToDoListItemWidget(
+                label_text=todo_text)) for todo_text in todo_list]
+        elif mode == "add":
+            self.todo_list.add_widget(
+                ToDoListItemWidget(label_text=todo_list[-1]))
+
+    def add_todo_list(self, todo_list):
+        self.add_widget
 
 
 class OnetoduScreenManager(ScreenManager):
