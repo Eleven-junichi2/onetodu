@@ -28,11 +28,11 @@ class TodoListManager:
 
     def add_todo(self, todo_text: str):
         self.todo_list.append(todo_text)
-        self.manager_user.update_list(self.todo_list)
+        self.manager_user.update_todo_list(self.todo_list)
 
     def remove_todo_by_text(self, todo_text: str):
         self.todo_list.remove(todo_text)
-        self.manager_user.update_list(self.todo_list)
+        self.manager_user.update_todo_list(self.todo_list)
 
     def save_to_json(self, file_path):
         with open(file_path, "w") as file_obj:
@@ -41,7 +41,7 @@ class TodoListManager:
     def load_list_from_json(self, file_path):
         with open(file_path, "r") as file_obj:
             self.todo_list = json.load(file_obj)
-        self.manager_user.update_list(self.todo_list)
+        self.manager_user.update_todo_list(self.todo_list)
 
 
 class ToDoListItemWidget(BoxLayout):
@@ -56,10 +56,7 @@ class MainScreen(Screen):
     todo_list = ObjectProperty(None)
     new_todo_text_input = ObjectProperty(None)
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-    def update_list(self, todo_list):
+    def update_todo_list(self, todo_list):
         self.todo_list.clear_widgets()
         for todo_text in todo_list:
             self.todo_list.add_widget(ToDoListItemWidget(label_text=todo_text))

@@ -1,6 +1,24 @@
 #:kivy 1.10.0
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 
+<AddToDoButton@Button>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        BorderImage:
+            id: drop_shadow
+            source: "images/add-todo_btn_shadow.png"
+            pos: self.x-6.5, self.y-6.5
+            size: self.width+13, self.height+13
+    # size: dp(306), dp(36)
+    # size_hint: None, None
+    height: dp(36)
+    size_hint_y: None
+    # pos_hint: {"center_x": 0.5}
+    background_normal: "images/add-todo_btn.png"
+    background_down: "images/add-todo_btn_pressed.png"
+
+
 <ToDoListItemWidget>:
     canvas.before:
         Color:
@@ -107,13 +125,14 @@
                                 background_active: "images/text-input_active.png"
                                 font_name: "NotoSansCJKjp-DemiLight"
                                 on_text_validate: app.todo_list_manager.add_todo(new_todo_text_input.text)
-                    Button:
-                        size: dp(306), dp(36)
-                        size_hint: None, None
-                        pos_hint: {"center_x": 0.5}
-                        background_normal: "images/add-todo_btn.png"
-                        background_down: "images/add-todo_btn_pressed.png"
+                    AddToDoButton:
                         on_release: app.todo_list_manager.add_todo(new_todo_text_input.text)
+                        # size: dp(306), dp(36)
+                        # size_hint: None, None
+                        # pos_hint: {"center_x": 0.5}
+                        # background_normal: "images/add-todo_btn.png"
+                        # background_down: "images/add-todo_btn_pressed.png"
+                        # on_release: app.todo_list_manager.add_todo(new_todo_text_input.text)
             RelativeLayout:
                 canvas.before:
                     Color:
