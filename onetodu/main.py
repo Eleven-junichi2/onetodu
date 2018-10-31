@@ -59,7 +59,11 @@ class ToDoListItemWidget(BoxLayout):
     label = ObjectProperty(None)
 
 
-class MainScreen(Screen, ToDoListManagerUser):
+class LicenseScreen(Screen):
+    pass
+
+
+class ToDoListScreen(Screen, ToDoListManagerUser):
     todo_list = ObjectProperty(None)
     new_todo_text_input = ObjectProperty(None)
 
@@ -78,7 +82,12 @@ class MainScreen(Screen, ToDoListManagerUser):
 class OnetoduScreenManager(ScreenManager):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.add_widget(MainScreen(name="main"))
+        self.add_widget(ToDoListScreen(name="todo_list"))
+        self.add_widget(LicenseScreen(name="license"))
+
+
+class RootWidget(BoxLayout):
+    pass
 
 
 class OnetoduApp(App):
@@ -87,8 +96,10 @@ class OnetoduApp(App):
         self.icon = "images/onetodu.png"
         self.screen_manager = OnetoduScreenManager()
         self.todo_list_manager = TodoListManager(
-            self.screen_manager.get_screen("main"))
-        return self.screen_manager
+            self.screen_manager.get_screen("todo_list"))
+        self.root_widget = RootWidget()
+        self.root_widget.add_widget(self.screen_manager)
+        return self.root_widget
 
     def on_start(self):
         if DATA_FILE_PATH.parent.exists():
