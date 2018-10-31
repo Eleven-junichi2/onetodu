@@ -58,10 +58,6 @@ class ToDoListManagerUser:
 class ToDoListItemWidget(BoxLayout):
     label = ObjectProperty(None)
 
-    def __init__(self, label_text, **kwargs):
-        super().__init__(**kwargs)
-        self.label.text = label_text
-
 
 class MainScreen(Screen, ToDoListManagerUser):
     todo_list = ObjectProperty(None)
@@ -73,11 +69,9 @@ class MainScreen(Screen, ToDoListManagerUser):
             [self.todo_list.add_widget(ToDoListItemWidget(
                 label_text=todo_text)) for todo_text in todo_list]
         elif mode == "add":
-            self.todo_list.add_widget(
-                ToDoListItemWidget(label_text=todo_list[-1]))
-
-    def add_todo_list(self, todo_list):
-        self.add_widget
+            todo_list_item_widget = ToDoListItemWidget()
+            todo_list.label.text = todo_list[-1]
+            self.todo_list.add_widget(todo_list_item_widget)
 
 
 class OnetoduScreenManager(ScreenManager):
