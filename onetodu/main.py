@@ -66,10 +66,11 @@ class MainScreen(Screen, ToDoListManagerUser):
     def update_todo_list(self, todo_list, mode="update"):
         if mode == "update" or "remove":
             self.todo_list.clear_widgets()
-            [self.todo_list.add_widget(ToDoListItemWidget(
-                label_text=todo_text)) for todo_text in todo_list]
+            for todo_text in todo_list:
+                todo_list_item_widget = ToDoListItemWidget()
+                todo_list_item_widget.label.text = todo_text
+                self.todo_list.add_widget(todo_list_item_widget)
         elif mode == "add":
-            todo_list_item_widget = ToDoListItemWidget()
             todo_list.label.text = todo_list[-1]
             self.todo_list.add_widget(todo_list_item_widget)
 
